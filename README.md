@@ -138,26 +138,71 @@ You can [generate sample capabilities for single browsers on the Browserstack we
 
 ### Multiple OSes
 
-It's recommended that you create combinations for different OSes separately, due to the nature of the "os_version" property. Once created, you can merge the two capabilities using a tool like Lodash:
+Because each OS has a unique version and/or device name, you can create combinations for them by including the information together:
 
 ```js
 var bsCapabilities = require("browserstack-capabilities");
 
-var ffWin = bsCapabilities.create({
+var capabilities = bsCapabilities.create({
+    browser: "firefox",
+    os: ["Windows", "OS X"],
+    browser_version: "42.0",
+    os_version: ["10", "8.1", "El Capitan", "Yosemite"]
+});
+
+console.log(capabilities);
+// outputs:
+// [{
+//   device: null,
+//   os: 'Windows',
+//   browser: 'firefox',
+//   os_version: '10',
+//   browser_version: '42.0'
+// }, {
+//   device: null,
+//   os: 'Windows',
+//   browser: 'firefox',
+//   os_version: '8.1',
+//   browser_version: '42.0'
+// }, {
+//   device: null,
+//   os: 'OS X',
+//   browser: 'firefox',
+//   os_version: 'El Capitan',
+//   browser_version: '42.0'
+// }, {
+//   device: null,
+//   os: 'OS X',
+//   browser: 'firefox',
+//   os_version: 'Yosemite',
+//   browser_version: '42.0'
+// }]
+```
+
+### Multiple Browsers
+
+It's recommended that you create combinations for different browsers separately, due to the singular nature of the "version" property. Once created, you can concat the combinations:
+
+```js
+var bsCapabilities = require("browserstack-capabilities");
+
+var ff = bsCapabilities.create({
     browser: "firefox",
     os: "Windows",
     browser_version: "42.0",
     os_version: ["10", "8.1"]
 });
 
-var ffMac = bsCapabilities.create({
-    browser: "firefox",
-    os : "OS X",
-    browser_version: "42.0",
-    os_version: ["El Capitan", "Yosemite"]
+var chrome = bsCapabilities.create({
+    browser: "chrome",
+    os: "Windows",
+    browser_version: "46.0",
+    os_version: ["10", "8.1"]
 });
 
-var capabilities = _.merge(ffWin, ffMac);
+var capabilities = ff.concat(chrome);
+
+console.log(capabilities);
 // outputs:
 // [{
 //   device: null,
@@ -174,20 +219,14 @@ var capabilities = _.merge(ffWin, ffMac);
 // }, {
 //   device: null,
 //   os: 'Windows',
-//   browser: 'firefox',
-//   os_version: '7',
-//   browser_version: '42.0'
+//   browser: 'chrome',
+//   os_version: '10',
+//   browser_version: '46.0'
 // }, {
 //   device: null,
-//   os: 'OS X',
-//   browser: 'firefox',
-//   os_version: 'El Capitan',
-//   browser_version: '42.0'
-// }, {
-//   device: null,
-//   os: 'OS X',
-//   browser: 'firefox',
-//   os_version: 'Yosemite',
-//   browser_version: '42.0'
+//   os: 'Windows',
+//   browser: 'chrome',
+//   os_version: '8.1',
+//   browser_version: '46.0'
 // }]
 ```
