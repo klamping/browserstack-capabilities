@@ -1,5 +1,6 @@
 var _ = require("lodash");
-var browsers = require("./browsers.json");
+var browsers = require("./lib/browsers.json");
+var parser = require("./lib/parse");
 
 function createRulesProduct(rules) {
   var filters = [rules];
@@ -49,5 +50,6 @@ module.exports = {
     }
 
     return browserMatches;
-  }
+  },
+  parse: parser
 };

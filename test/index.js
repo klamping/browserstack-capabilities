@@ -1,5 +1,5 @@
 var expect = require("chai").expect;
-var bsCapabilities = require("../main.js");
+var bsCapabilities = require("../index.js");
 
 describe("combo generation", function() {
   describe("simple combinations", function() {
