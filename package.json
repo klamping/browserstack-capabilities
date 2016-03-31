@@ -4,7 +4,10 @@
   "description": "An easier way to generate multiple capabilities based on JSON filters.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "preversion": "npm test",
+    "version": "git add -u",
+    "postversion": "git push --no-verify && git push --tags --no-verify && npm publish"
   },
   "repository": {
     "type": "git",
