@@ -110,4 +110,23 @@ describe("bsCaps.parse", function() {
     });
   });
 
+  it("should handle arrays", function () {
+      var generatedCapabilities = bsCaps.parse(["ch", "ff"]);
+
+      var expectedCapabilities = [{
+        os: 'ANY',
+        browser: 'Chrome',
+        os_version: 'ANY',
+        browser_version: 'ANY'
+      }, {
+        os: 'ANY',
+        browser: 'Firefox',
+        os_version: 'ANY',
+        browser_version: 'ANY'
+      }];
+
+      expect(generatedCapabilities).to.deep.equal(expectedCapabilities);
+
+  })
+
 });
