@@ -8,9 +8,10 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'ANY',
-        browser: 'Chrome',
+        browserName: 'Chrome',
         os_version: 'ANY',
-        browser_version: 'ANY'
+        version: 'ANY',
+        platform: 'ANY'
       };
 
       expect(generatedCapabilities).to.deep.equal(expectedCapabilities);
@@ -21,9 +22,10 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'ANY',
-        browser: 'Chrome',
+        browserName: 'Chrome',
         os_version: 'ANY',
-        browser_version: '42'
+        version: '42',
+        platform: 'ANY'
       };
 
       expect(generatedCapabilities).to.deep.equal(expectedCapabilities);
@@ -34,9 +36,10 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'ANY',
-        browser: 'Chrome',
+        browserName: 'Chrome',
         os_version: 'ANY',
-        browser_version: '42'
+        version: '42',
+        platform: 'ANY'
       };
 
       expect(generatedCapabilities).to.deep.equal(expectedCapabilities);
@@ -49,9 +52,10 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'Windows',
-        browser: 'Chrome',
+        browserName: 'Chrome',
         os_version: 'ANY',
-        browser_version: 'ANY'
+        version: 'ANY',
+        platform: 'WINDOWS'
       };
 
       expect(generatedCapabilities).to.deep.equal(expectedCapabilities);
@@ -62,9 +66,10 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'Windows',
-        browser: 'Chrome',
+        browserName: 'Chrome',
         os_version: 'ANY',
-        browser_version: '42'
+        version: '42',
+        platform: 'WINDOWS'
       };
 
       expect(generatedCapabilities).to.deep.equal(expectedCapabilities);
@@ -75,9 +80,10 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'Windows',
-        browser: 'Chrome',
+        browserName: 'Chrome',
         os_version: '10',
-        browser_version: 'ANY'
+        version: 'ANY',
+        platform: 'WINDOWS'
       };
 
       expect(generatedCapabilities).to.deep.equal(expectedCapabilities);
@@ -88,9 +94,10 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'Windows',
-        browser: 'Chrome',
+        browserName: 'Chrome',
         os_version: '10',
-        browser_version: '42'
+        version: '42',
+        platform: 'WINDOWS'
       };
 
       expect(generatedCapabilities).to.deep.equal(expectedCapabilities);
@@ -101,9 +108,10 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'Windows',
-        browser: 'Chrome',
+        browserName: 'Chrome',
         os_version: 'XP',
-        browser_version: '42'
+        version: '42',
+        platform: 'WINDOWS'
       };
 
       expect(generatedCapabilities).to.deep.equal(expectedCapabilities);
@@ -115,14 +123,16 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = [{
         os: 'ANY',
-        browser: 'Chrome',
+        browserName: 'Chrome',
         os_version: 'ANY',
-        browser_version: 'ANY'
+        version: 'ANY',
+        platform: 'ANY'
       }, {
         os: 'ANY',
-        browser: 'Firefox',
+        browserName: 'Firefox',
         os_version: 'ANY',
-        browser_version: 'ANY'
+        version: 'ANY',
+        platform: 'ANY'
       }];
 
       expect(generatedCapabilities).to.deep.equal(expectedCapabilities);
