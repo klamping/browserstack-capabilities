@@ -8,7 +8,7 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'ANY',
-        browserName: 'Chrome',
+        browserName: 'chrome',
         os_version: 'ANY',
         version: 'ANY',
         platform: 'ANY'
@@ -22,7 +22,7 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'ANY',
-        browserName: 'Chrome',
+        browserName: 'chrome',
         os_version: 'ANY',
         version: '42',
         platform: 'ANY'
@@ -32,11 +32,11 @@ describe("bsCaps.parse", function() {
     });
 
     it("should parse browser name and version without alias", function() {
-      var generatedCapabilities = bsCaps.parse("Chrome:42");
+      var generatedCapabilities = bsCaps.parse("chrome:42");
 
       var expectedCapabilities = {
         os: 'ANY',
-        browserName: 'Chrome',
+        browserName: 'chrome',
         os_version: 'ANY',
         version: '42',
         platform: 'ANY'
@@ -52,7 +52,7 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'Windows',
-        browserName: 'Chrome',
+        browserName: 'chrome',
         os_version: 'ANY',
         version: 'ANY',
         platform: 'WINDOWS'
@@ -66,7 +66,7 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'Windows',
-        browserName: 'Chrome',
+        browserName: 'chrome',
         os_version: 'ANY',
         version: '42',
         platform: 'WINDOWS'
@@ -80,7 +80,7 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'Windows',
-        browserName: 'Chrome',
+        browserName: 'chrome',
         os_version: '10',
         version: 'ANY',
         platform: 'WINDOWS'
@@ -94,7 +94,7 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = {
         os: 'Windows',
-        browserName: 'Chrome',
+        browserName: 'chrome',
         os_version: '10',
         version: '42',
         platform: 'WINDOWS'
@@ -104,11 +104,11 @@ describe("bsCaps.parse", function() {
     });
 
     it("should parse browser name/version and os/version without aliases", function() {
-      var generatedCapabilities = bsCaps.parse("Chrome:42@Windows:XP");
+      var generatedCapabilities = bsCaps.parse("chrome:42@Windows:XP");
 
       var expectedCapabilities = {
         os: 'Windows',
-        browserName: 'Chrome',
+        browserName: 'chrome',
         os_version: 'XP',
         version: '42',
         platform: 'WINDOWS'
@@ -123,13 +123,13 @@ describe("bsCaps.parse", function() {
 
       var expectedCapabilities = [{
         os: 'ANY',
-        browserName: 'Chrome',
+        browserName: 'chrome',
         os_version: 'ANY',
         version: 'ANY',
         platform: 'ANY'
       }, {
         os: 'ANY',
-        browserName: 'Firefox',
+        browserName: 'firefox',
         os_version: 'ANY',
         version: 'ANY',
         platform: 'ANY'
