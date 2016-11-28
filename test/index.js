@@ -13,13 +13,13 @@ describe("combo generation", function() {
           device: null,
           os: 'Windows',
           browser: 'ie',
-          os_version: '8',
+          os_version: '7',
           browser_version: '10.0'
         }, {
           device: null,
           os: 'Windows',
           browser: 'ie',
-          os_version: '7',
+          os_version: '8',
           browser_version: '10.0'
         }];
 
@@ -155,12 +155,12 @@ describe("combo generation", function() {
           device: null,
           os: 'Windows',
           browser: 'firefox',
-          os_version: '10',
+          os_version: '8.1',
           browser_version: '42.0'},
         { device: null,
           os: 'Windows',
           browser: 'firefox',
-          os_version: '8.1',
+          os_version: '10',
           browser_version: '42.0' }];
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
