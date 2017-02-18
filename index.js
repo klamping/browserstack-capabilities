@@ -33,40 +33,40 @@ function nestedExclude (browsers, rules) {
   }, browsers);
 }
 
-module.exports = {
-  create: function (includes, excludes) {
+module.exports = function(username, password) {
+  return {
+    create: function (includes, excludes) {
 
-    if (!browsers) {
-      var username = process.env.BROWSERSTACK_USERNAME;
-      var password = process.env.BROWSERSTACK_PASSWORD;
-      var auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
+      if (!browsers) {
+        var auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
 
-      var res = request('GET', 'https://api.browserstack.com/4/browsers?flat=true', {
-        'headers': {
-          'Authorization': auth
-        }
-      });
+        var res = request('GET', 'https://api.browserstack.com/4/browsers?flat=true', {
+          'headers': {
+            'Authorization': auth
+          }
+        });
 
-      browsers = JSON.parse(res.getBody());
-    }
+        browsers = JSON.parse(res.getBody());
+      }
 
-    var rules;
-    var browserMatches = _.clone(browsers);
+      var rules;
+      var browserMatches = _.clone(browsers);
 
-    if (includes) {
-      rules = createRulesProduct(includes);
+      if (includes) {
+        rules = createRulesProduct(includes);
 
-      browserMatches = _.flatten(_.map(rules, function (rule) {
-        return _.filter(browserMatches, rule);
-      }));
+        browserMatches = _.flatten(_.map(rules, function (rule) {
+          return _.filter(browserMatches, rule);
+        }));
 
-    }
-    if (excludes) {
-      rules = createRulesProduct(excludes);
-      browserMatches = nestedExclude(browserMatches, rules);
-    }
+      }
+      if (excludes) {
+        rules = createRulesProduct(excludes);
+        browserMatches = nestedExclude(browserMatches, rules);
+      }
 
-    return browserMatches;
-  },
-  parse: parser
+      return browserMatches;
+    },
+    parse: parser
+  };
 };

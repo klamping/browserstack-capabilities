@@ -1,5 +1,5 @@
 var expect = require("chai").expect;
-var bsCapabilities = require("../index.js");
+var bsCapabilities = require("../index.js")(process.env.BROWSERSTACK_USERNAME, process.env.BROWSERSTACK_PASSWORD);
 
 describe("combo generation", function() {
   describe("simple combinations", function() {

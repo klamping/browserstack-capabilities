@@ -1,5 +1,5 @@
 var expect = require("chai").expect;
-var bsCaps = require("../index.js");
+var bsCaps = require("../index.js")(process.env.BROWSERSTACK_USERNAME, process.env.BROWSERSTACK_PASSWORD);
 
 describe("bsCaps.parse", function() {
   describe("browser only", function() {
