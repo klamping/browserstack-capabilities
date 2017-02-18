@@ -1,6 +1,8 @@
 var _ = require("lodash");
-var browsers = require("./lib/browsers.json");
 var parser = require("./lib/parse");
+var request = require("sync-request");
+
+var browsers;
 
 function createRulesProduct(rules) {
   var filters = [rules];
@@ -20,7 +22,7 @@ function createRulesProduct(rules) {
 
       filters = newFilters;
     }
-  })
+  });
 
   return filters;
 }
@@ -29,17 +31,32 @@ function nestedExclude (browsers, rules) {
   return _.reduce(rules, function(filteredBrowsers, rule) {
     return _.reject(filteredBrowsers, rule);
   }, browsers);
-};
+}
 
 module.exports = {
   create: function (includes, excludes) {
+
+    if (!browsers) {
+      var username = process.env.BROWSERSTACK_USERNAME;
+      var password = process.env.BROWSERSTACK_PASSWORD;
+      var auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
+
+      var res = request('GET', 'https://api.browserstack.com/4/browsers?flat=true', {
+        'headers': {
+          'Authorization': auth
+        }
+      });
+
+      browsers = JSON.parse(res.getBody());
+    }
+
     var rules;
     var browserMatches = _.clone(browsers);
 
     if (includes) {
       rules = createRulesProduct(includes);
 
-      browserMatches = _.flatten(_.map(rules, function(rule) {
+      browserMatches = _.flatten(_.map(rules, function (rule) {
         return _.filter(browserMatches, rule);
       }));
 
