@@ -56,6 +56,11 @@ module.exports = function(username, password) {
         rules = createRulesProduct(includes);
 
         browserMatches = _.flatten(_.map(rules, function (rule) {
+          if (rule.browser_version === 'latest') {
+            var latest_rule = _.clone(rule);
+            delete latest_rule.browser_version;
+            return [_.last(_.sortBy(_.filter(browserMatches, latest_rule), ['browser_version']))];
+          }
           return _.filter(browserMatches, rule);
         }));
 
