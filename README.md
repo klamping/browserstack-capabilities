@@ -189,7 +189,55 @@ console.log(capabilities);
 
 ### Multiple Browsers
 
-It's recommended that you create combinations for different browsers separately, due to the singular nature of the "version" property. Once created, you can concat the combinations:
+You can create combinations for multiple browsers at the same time by passing an array of filters into the create function:
+
+```js
+var username = "<browserstack username>";
+var key = "<browserstack key>";
+var bsCapabilities = require("browserstack-capabilities")(username, key);
+
+var capabilities = bsCapabilities.create([{
+  browser: "firefox",
+  browser_version: "42.0",
+  os: "Windows",
+  os_version: ["10", "8.1"]
+},{
+  browser: "chrome",
+  browser_version: "46.0",
+  os: "Windows",
+  os_version: ["10", "8.1"]
+}]);
+
+console.log(capabilities);
+// outputs:
+// [{
+//   device: null,
+//   os: 'Windows',
+//   browser: 'firefox',
+//   os_version: '10',
+//   browser_version: '42.0'
+// }, {
+//   device: null,
+//   os: 'Windows',
+//   browser: 'firefox',
+//   os_version: '8.1',
+//   browser_version: '42.0'
+// }, {
+//   device: null,
+//   os: 'Windows',
+//   browser: 'chrome',
+//   os_version: '10',
+//   browser_version: '46.0'
+// }, {
+//   device: null,
+//   os: 'Windows',
+//   browser: 'chrome',
+//   os_version: '8.1',
+//   browser_version: '46.0'
+// }]
+```
+
+If you prefer, you can create combinations for different browsers separately. Once created, you can concat the combinations:
 
 ```js
 var username = "<browserstack username>";

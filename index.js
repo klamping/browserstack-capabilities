@@ -53,7 +53,11 @@ module.exports = function(username, key) {
       var browserMatches = _.clone(browsers);
 
       if (includes) {
-        rules = createRulesProduct(includes);
+        if (_.isArray(includes)) {
+          rules = _.flatten(_.map(includes, createRulesProduct));
+        } else {
+          rules = createRulesProduct(includes);
+        }
 
         browserMatches = _.flatten(_.map(rules, function (rule) {
           if (rule.browser_version === 'latest') {
@@ -66,7 +70,11 @@ module.exports = function(username, key) {
 
       }
       if (excludes) {
-        rules = createRulesProduct(excludes);
+        if (_.isArray(excludes)) {
+          rules = _.flatten(_.map(excludes, createRulesProduct));
+        } else {
+          rules = createRulesProduct(excludes);
+        }
         browserMatches = nestedExclude(browserMatches, rules);
       }
 
