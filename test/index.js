@@ -1,5 +1,5 @@
 var expect = require("chai").expect;
-var bsCapabilities = require("../index.js")(process.env.BROWSERSTACK_USERNAME, process.env.BROWSERSTACK_PASSWORD);
+var bsCapabilities = require("../index.js")(process.env.BROWSERSTACK_USERNAME, process.env.BROWSERSTACK_KEY);
 
 describe("combo generation", function() {
   describe("simple combinations", function () {
@@ -221,43 +221,43 @@ describe("combo generation", function() {
         os_version: ["XP", "7", "8", "8.1", "10"]
       });
 
-      var expectedCombos = [
-        {
-          os: 'Windows',
-          os_version: 'XP',
-          browser: 'ie',
-          device: null,
-          browser_version: '8.0'
-        },
-        {
-          os: 'Windows',
-          os_version: '7',
-          browser: 'ie',
-          device: null,
-          browser_version: '11.0'
-        },
-        {
-          os: 'Windows',
-          os_version: '8',
-          browser: 'ie',
-          device: null,
-          browser_version: '10.0 Metro'
-        },
-        {
-          os: 'Windows',
-          os_version: '8.1',
-          browser: 'ie',
-          device: null,
-          browser_version: '11.0 Metro'
-        },
-        {
-          os: 'Windows',
-          os_version: '10',
-          browser: 'ie',
-          device: null,
-          browser_version: '11.0'
-        }
-      ];
+      // var expectedCombos = [
+      //   {
+      //     os: 'Windows',
+      //     os_version: 'XP',
+      //     browser: 'ie',
+      //     device: null,
+      //     browser_version: '8.0'
+      //   },
+      //   {
+      //     os: 'Windows',
+      //     os_version: '7',
+      //     browser: 'ie',
+      //     device: null,
+      //     browser_version: '11.0'
+      //   },
+      //   {
+      //     os: 'Windows',
+      //     os_version: '8',
+      //     browser: 'ie',
+      //     device: null,
+      //     browser_version: '10.0 Metro'
+      //   },
+      //   {
+      //     os: 'Windows',
+      //     os_version: '8.1',
+      //     browser: 'ie',
+      //     device: null,
+      //     browser_version: '11.0 Metro'
+      //   },
+      //   {
+      //     os: 'Windows',
+      //     os_version: '10',
+      //     browser: 'ie',
+      //     device: null,
+      //     browser_version: '11.0'
+      //   }
+      // ];
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
     });

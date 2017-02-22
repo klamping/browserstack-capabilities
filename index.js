@@ -33,12 +33,12 @@ function nestedExclude (browsers, rules) {
   }, browsers);
 }
 
-module.exports = function(username, password) {
+module.exports = function(username, key) {
   return {
     create: function (includes, excludes) {
 
       if (!browsers) {
-        var auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
+        var auth = 'Basic ' + new Buffer(username + ':' + key).toString('base64');
 
         var res = request('GET', 'https://api.browserstack.com/4/browsers?flat=true', {
           'headers': {
