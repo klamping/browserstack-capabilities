@@ -19,7 +19,9 @@ The "exclude" filter will return all browsers that don't match the defined prope
 You do not have to include all properties in your search. Any properties not defined will be included in all variations.
 
 ```js
-var bsCapabilities = require("browserstack-capabilities");
+var username = "<browserstack username>";
+var key = "<browserstack key>";
+var bsCapabilities = require("browserstack-capabilities")(username, key);
 
 var capabilities = bsCapabilities.create({
     browser: "ie",
@@ -48,7 +50,9 @@ console.log(capabilities);
 You can define multiple values per property:
 
 ```js
-var bsCapabilities = require("browserstack-capabilities");
+var username = "<browserstack username>";
+var key = "<browserstack key>";
+var bsCapabilities = require("browserstack-capabilities")(username, key);
 
 var capabilities = bsCapabilities.create({
     browser: "ie",
@@ -90,7 +94,9 @@ console.log(capabilities);
 Includes and excludes can be combined to create complex scenarios. For example, I want all version of IE11 & IE10, except I don't care about IE11 on Windows 7:
 
 ```js
-var bsCapabilities = require("browserstack-capabilities");
+var username = "<browserstack username>";
+var key = "<browserstack key>";
+var bsCapabilities = require("browserstack-capabilities")(username, key);
 
 var capabilities = bsCapabilities.create({
     browser: "ie",
@@ -141,7 +147,9 @@ You can [generate sample capabilities for single browsers on the Browserstack we
 Because each OS has a unique version and/or device name, you can create combinations for them by including the information together:
 
 ```js
-var bsCapabilities = require("browserstack-capabilities");
+var username = "<browserstack username>";
+var key = "<browserstack key>";
+var bsCapabilities = require("browserstack-capabilities")(username, key);
 
 var capabilities = bsCapabilities.create({
     browser: "firefox",
@@ -184,7 +192,9 @@ console.log(capabilities);
 It's recommended that you create combinations for different browsers separately, due to the singular nature of the "version" property. Once created, you can concat the combinations:
 
 ```js
-var bsCapabilities = require("browserstack-capabilities");
+var username = "<browserstack username>";
+var key = "<browserstack key>";
+var bsCapabilities = require("browserstack-capabilities")(username, key);
 
 var ff = bsCapabilities.create({
     browser: "firefox",
@@ -236,7 +246,9 @@ console.log(capabilities);
 You can select the latest browser for an OS by passing in the string "latest" as the browser version:
 
 ```js
-var bsCapabilities = require("browserstack-capabilities");
+var username = "<browserstack username>";
+var key = "<browserstack key>";
+var bsCapabilities = require("browserstack-capabilities")(username, key);
 
 var capabilities = bsCapabilities.create({
   browser: "ie",
@@ -246,7 +258,6 @@ var capabilities = bsCapabilities.create({
 });
 
 console.log(capabilities);
-
 // outputs:
 // [{
 //   os: 'Windows',
