@@ -1,6 +1,8 @@
 var _ = require("lodash");
-var browsers = require("./lib/browsers.json");
 var parser = require("./lib/parse");
+var request = require("sync-request");
+
+var browsers;
 
 function createRulesProduct(rules) {
   var filters = [rules];
@@ -20,7 +22,7 @@ function createRulesProduct(rules) {
 
       filters = newFilters;
     }
-  })
+  });
 
   return filters;
 }
@@ -29,27 +31,47 @@ function nestedExclude (browsers, rules) {
   return _.reduce(rules, function(filteredBrowsers, rule) {
     return _.reject(filteredBrowsers, rule);
   }, browsers);
-};
+}
 
-module.exports = {
-  create: function (includes, excludes) {
-    var rules;
-    var browserMatches = _.clone(browsers);
+module.exports = function(username, key) {
+  return {
+    create: function (includes, excludes) {
 
-    if (includes) {
-      rules = createRulesProduct(includes);
+      if (!browsers) {
+        var auth = 'Basic ' + new Buffer(username + ':' + key).toString('base64');
 
-      browserMatches = _.flatten(_.map(rules, function(rule) {
-        return _.filter(browserMatches, rule);
-      }));
+        var res = request('GET', 'https://api.browserstack.com/4/browsers?flat=true', {
+          'headers': {
+            'Authorization': auth
+          }
+        });
 
-    }
-    if (excludes) {
-      rules = createRulesProduct(excludes);
-      browserMatches = nestedExclude(browserMatches, rules);
-    }
+        browsers = JSON.parse(res.getBody());
+      }
 
-    return browserMatches;
-  },
-  parse: parser
+      var rules;
+      var browserMatches = _.clone(browsers);
+
+      if (includes) {
+        rules = createRulesProduct(includes);
+
+        browserMatches = _.flatten(_.map(rules, function (rule) {
+          if (rule.browser_version === 'latest') {
+            var latest_rule = _.clone(rule);
+            delete latest_rule.browser_version;
+            return [_.last(_.sortBy(_.filter(browserMatches, latest_rule), ['browser_version']))];
+          }
+          return _.filter(browserMatches, rule);
+        }));
+
+      }
+      if (excludes) {
+        rules = createRulesProduct(excludes);
+        browserMatches = nestedExclude(browserMatches, rules);
+      }
+
+      return browserMatches;
+    },
+    parse: parser
+  };
 };

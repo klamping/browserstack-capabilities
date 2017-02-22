@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/klamping/browserstack-capabilities#readme",
   "dependencies": {
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "sync-request": "^4.0.1"
   },
   "devDependencies": {
     "chai": "^3.4.1",
