@@ -373,5 +373,27 @@ describe("combo generation", function() {
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
     });
+
+    it("should only take operating system where browser exists", function () {
+      var generatedCombo = bsCapabilities.create({
+        browser: "edge",
+        browser_version: ["latest"],
+        os: "Windows",
+        os_version: ["XP", "7", "8", "8.1", "10"]
+      });
+
+      var expectedCombos = [
+        {
+          os: 'Windows',
+          os_version: '10',
+          browser: 'edge',
+          device: null,
+          browser_version: '16.0',
+          real_mobile: null
+        }
+      ];
+
+      expect(generatedCombo).to.deep.equal(expectedCombos);
+    });
   });
 });

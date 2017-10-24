@@ -63,7 +63,8 @@ module.exports = function(username, key) {
           if (rule.browser_version === 'latest') {
             var latest_rule = _.clone(rule);
             delete latest_rule.browser_version;
-            return [_.last(_.sortBy(_.filter(browserMatches, latest_rule), ['browser_version']))];
+            var latest = _.last(_.sortBy(_.filter(browserMatches, latest_rule), ['browser_version']));
+            return latest ? [latest] : [];
           }
           return _.filter(browserMatches, rule);
         }));
