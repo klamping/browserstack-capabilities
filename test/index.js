@@ -14,13 +14,15 @@ describe("combo generation", function() {
         os: 'Windows',
         browser: 'ie',
         os_version: '7',
-        browser_version: '10.0'
+        browser_version: '10.0',
+        real_mobile: null
       }, {
         device: null,
         os: 'Windows',
         browser: 'ie',
         os_version: '8',
-        browser_version: '10.0'
+        browser_version: '10.0',
+        real_mobile: null
       }];
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
@@ -40,19 +42,22 @@ describe("combo generation", function() {
         os: 'Windows',
         browser: 'ie',
         os_version: '7',
-        browser_version: '9.0'
+        browser_version: '9.0',
+        real_mobile: null
       }, {
         device: null,
         os: 'Windows',
         browser: 'ie',
         os_version: '7',
-        browser_version: '10.0'
+        browser_version: '10.0',
+        real_mobile: null
       }, {
         device: null,
         os: 'Windows',
         browser: 'ie',
         os_version: '7',
-        browser_version: '11.0'
+        browser_version: '11.0',
+        real_mobile: null
       }];
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
@@ -72,7 +77,8 @@ describe("combo generation", function() {
         os: 'Windows',
         browser: 'ie',
         os_version: '8',
-        browser_version: '10.0'
+        browser_version: '10.0',
+        real_mobile: null
       }];
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
@@ -98,25 +104,29 @@ describe("combo generation", function() {
         os: 'Windows',
         browser: 'firefox',
         os_version: '10',
-        browser_version: '42.0'
+        browser_version: '42.0',
+        real_mobile: null
       }, {
         device: null,
         os: 'Windows',
         browser: 'firefox',
         os_version: '8.1',
-        browser_version: '42.0'
+        browser_version: '42.0',
+        real_mobile: null
       }, {
         device: null,
         os: 'Windows',
         browser: 'chrome',
         os_version: '10',
-        browser_version: '46.0'
+        browser_version: '46.0',
+        real_mobile: null
       }, {
         device: null,
         os: 'Windows',
         browser: 'chrome',
         os_version: '8.1',
-        browser_version: '46.0'
+        browser_version: '46.0',
+        real_mobile: null
       }];
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
@@ -138,13 +148,15 @@ describe("combo generation", function() {
         os: 'Windows',
         browser: 'ie',
         os_version: '7',
-        browser_version: '10.0'
+        browser_version: '10.0',
+        real_mobile: null
       }, {
         device: null,
         os: 'Windows',
         browser: 'ie',
         os_version: '7',
-        browser_version: '11.0'
+        browser_version: '11.0',
+        real_mobile: null
       }];
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
@@ -166,28 +178,32 @@ describe("combo generation", function() {
           os: 'Windows',
           browser: 'ie',
           os_version: '10',
-          browser_version: '11.0'
+          browser_version: '11.0',
+          real_mobile: null
         },
         {
           device: null,
           os: 'Windows',
           browser: 'ie',
           os_version: '8.1',
-          browser_version: '11.0'
+          browser_version: '11.0',
+          real_mobile: null
         },
         {
           device: null,
           os: 'Windows',
           browser: 'ie',
           os_version: '7',
-          browser_version: '11.0'
+          browser_version: '11.0',
+          real_mobile: null
         },
         {
           device: null,
           os: 'Windows',
           browser: 'ie',
           os_version: '7',
-          browser_version: '10.0'
+          browser_version: '10.0',
+          real_mobile: null
         }];
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
@@ -209,21 +225,24 @@ describe("combo generation", function() {
           os: 'Windows',
           browser: 'ie',
           os_version: '10',
-          browser_version: '11.0'
+          browser_version: '11.0',
+          real_mobile: null
         },
         {
           device: null,
           os: 'Windows',
           browser: 'ie',
           os_version: '8.1',
-          browser_version: '11.0'
+          browser_version: '11.0',
+          real_mobile: null
         },
         {
           device: null,
           os: 'Windows',
           browser: 'ie',
           os_version: '7',
-          browser_version: '10.0'
+          browser_version: '10.0',
+          real_mobile: null
         }];
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
@@ -245,21 +264,24 @@ describe("combo generation", function() {
           os: 'Windows',
           browser: 'firefox',
           os_version: '7',
-          browser_version: '42.0'
+          browser_version: '42.0',
+          real_mobile: null
         },
         {
           device: null,
           os: 'Windows',
           browser: 'firefox',
           os_version: '8.1',
-          browser_version: '42.0'
+          browser_version: '42.0',
+          real_mobile: null
         },
         {
           device: null,
           os: 'Windows',
           browser: 'firefox',
           os_version: '10',
-          browser_version: '42.0'
+          browser_version: '42.0',
+          real_mobile: null
         }];
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
@@ -281,14 +303,16 @@ describe("combo generation", function() {
           os: 'Windows',
           browser: 'ie',
           os_version: '10',
-          browser_version: '11.0'
+          browser_version: '11.0',
+          real_mobile: null
         },
         {
           device: null,
           os: 'Windows',
           browser: 'ie',
           os_version: '7',
-          browser_version: '10.0'
+          browser_version: '10.0',
+          real_mobile: null
         }];
 
       expect(generatedCombo).to.deep.equal(expectedCombos);
@@ -310,35 +334,40 @@ describe("combo generation", function() {
           os_version: 'XP',
           browser: 'ie',
           device: null,
-          browser_version: '8.0'
+          browser_version: '8.0',
+          real_mobile: null
         },
         {
           os: 'Windows',
           os_version: '7',
           browser: 'ie',
           device: null,
-          browser_version: '11.0'
+          browser_version: '11.0',
+          real_mobile: null
         },
         {
           os: 'Windows',
           os_version: '8',
           browser: 'ie',
           device: null,
-          browser_version: '10.0 Metro'
+          browser_version: '10.0 Metro',
+          real_mobile: null
         },
         {
           os: 'Windows',
           os_version: '8.1',
           browser: 'ie',
           device: null,
-          browser_version: '11.0 Metro'
+          browser_version: '11.0 Metro',
+          real_mobile: null
         },
         {
           os: 'Windows',
           os_version: '10',
           browser: 'ie',
           device: null,
-          browser_version: '11.0'
+          browser_version: '11.0',
+          real_mobile: null
         }
       ];
 
