@@ -289,9 +289,9 @@ console.log(capabilities);
 // }]
 ```
 
-### Latest browser
+### Current version of a browser
 
-You can select the latest browser for an OS by passing in the string "latest" as the browser version:
+You can select the current version of a browser for an OS by passing in the string "current" as the browser version:
 
 ```js
 var username = "<browserstack username>";
@@ -300,7 +300,7 @@ var bsCapabilities = require("browserstack-capabilities")(username, key);
 
 var capabilities = bsCapabilities.create({
   browser: "ie",
-  browser_version: ["latest"],
+  browser_version: ["current"],
   os: "Windows",
   os_version: ["XP", "7", "8", "8.1", "10"]
 });
@@ -324,13 +324,13 @@ console.log(capabilities);
 //   os_version: '8',
 //   browser: 'ie',
 //   device: null,
-//   browser_version: '10.0 Metro'
+//   browser_version: '10.0'
 // }, {
 //   os: 'Windows',
 //   os_version: '8.1',
 //   browser: 'ie',
 //   device: null,
-//   browser_version: '11.0 Metro'
+//   browser_version: '11.0'
 // }, {
 //   os: 'Windows',
 //   os_version: '10',
