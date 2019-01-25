@@ -319,11 +319,11 @@ describe("combo generation", function() {
     });
   });
 
-  describe("latest combinations", function () {
-    it("should take a latest browser_version include", function () {
+  describe("current combinations", function () {
+    it("should take a current browser_version include", function () {
       var generatedCombo = bsCapabilities.create({
         browser: "ie",
-        browser_version: ["latest"],
+        browser_version: ["current"],
         os: "Windows",
         os_version: ["XP", "7", "8", "8.1", "10"]
       });
@@ -334,7 +334,7 @@ describe("combo generation", function() {
           os_version: 'XP',
           browser: 'ie',
           device: null,
-          browser_version: '8.0',
+          browser_version: '7.0',
           real_mobile: null
         },
         {
@@ -350,7 +350,7 @@ describe("combo generation", function() {
           os_version: '8',
           browser: 'ie',
           device: null,
-          browser_version: '10.0 Metro',
+          browser_version: '10.0',
           real_mobile: null
         },
         {
@@ -358,7 +358,7 @@ describe("combo generation", function() {
           os_version: '8.1',
           browser: 'ie',
           device: null,
-          browser_version: '11.0 Metro',
+          browser_version: '11.0',
           real_mobile: null
         },
         {
@@ -377,7 +377,7 @@ describe("combo generation", function() {
     it("should only take operating system where browser exists", function () {
       var generatedCombo = bsCapabilities.create({
         browser: "edge",
-        browser_version: ["latest"],
+        browser_version: ["current"],
         os: "Windows",
         os_version: ["XP", "7", "8", "8.1", "10"]
       });
@@ -388,7 +388,7 @@ describe("combo generation", function() {
           os_version: '10',
           browser: 'edge',
           device: null,
-          browser_version: '16.0',
+          browser_version: '18.0',
           real_mobile: null
         }
       ];

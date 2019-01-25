@@ -40,7 +40,7 @@ module.exports = function(username, key) {
       if (!browsers) {
         var auth = 'Basic ' + new Buffer(username + ':' + key).toString('base64');
 
-        var res = request('GET', 'https://api.browserstack.com/4/browsers?flat=true', {
+        var res = request('GET', 'https://api.browserstack.com/automate/browsers.json', {
           'headers': {
             'Authorization': auth
           }
@@ -60,11 +60,18 @@ module.exports = function(username, key) {
         }
 
         browserMatches = _.flatten(_.map(rules, function (rule) {
-          if (rule.browser_version === 'latest') {
-            var latest_rule = _.clone(rule);
-            delete latest_rule.browser_version;
-            var latest = _.last(_.sortBy(_.filter(browserMatches, latest_rule), ['browser_version']));
-            return latest ? [latest] : [];
+          if (rule.browser_version === 'current') {
+            var current_rule = _.clone(rule);
+            delete current_rule.browser_version;
+            // ignore any browser with a version that can't be determined to be a number
+            var candidates = _.filter(browserMatches, function(browser) {
+              return isFinite(browser['browser_version']);
+            });
+            candidates = _.filter(candidates, current_rule);
+            var current = _.last(_.sortBy(candidates, function(browser) {
+              return parseFloat(browser['browser_version']);
+            }));
+            return current ? [current] : [];
           }
           return _.filter(browserMatches, rule);
         }));
