@@ -396,4 +396,136 @@ describe("combo generation", function() {
       expect(generatedCombo).to.deep.equal(expectedCombos);
     });
   });
+
+  describe("previous combinations", function () {
+    it("should take a previous browser_version include", function () {
+      var generatedCombo = bsCapabilities.create({
+        browser: "ie",
+        browser_version: ["previous"],
+        os: "Windows",
+        os_version: ["XP", "7"]
+      });
+
+      var expectedCombos = [
+        {
+          os: 'Windows',
+          os_version: 'XP',
+          browser: 'ie',
+          device: null,
+          browser_version: '6.0',
+          real_mobile: null
+        },
+        {
+          os: 'Windows',
+          os_version: '7',
+          browser: 'ie',
+          device: null,
+          browser_version: '10.0',
+          real_mobile: null
+        }
+      ];
+
+      expect(generatedCombo).to.deep.equal(expectedCombos);
+    });
+
+    it("should only take operating system where browser exists", function () {
+      var generatedCombo = bsCapabilities.create({
+        browser: "edge",
+        browser_version: ["previous"],
+        os: "Windows",
+        os_version: ["XP", "7", "8", "8.1", "10"]
+      });
+
+      var expectedCombos = [
+        {
+          os: 'Windows',
+          os_version: '10',
+          browser: 'edge',
+          device: null,
+          browser_version: '17.0',
+          real_mobile: null
+        }
+      ];
+
+      expect(generatedCombo).to.deep.equal(expectedCombos);
+    });
+  });
+
+  describe("latest combinations", function () {
+    it("should take a latest browser_version include", function () {
+      var generatedCombo = bsCapabilities.create({
+        browser: "ie",
+        browser_version: ["latest"],
+        os: "Windows",
+        os_version: ["XP", "7", "8", "8.1", "10"]
+      });
+
+      var expectedCombos = [
+        {
+          os: 'Windows',
+          os_version: 'XP',
+          browser: 'ie',
+          device: null,
+          browser_version: '7.0',
+          real_mobile: null
+        },
+        {
+          os: 'Windows',
+          os_version: '7',
+          browser: 'ie',
+          device: null,
+          browser_version: '11.0',
+          real_mobile: null
+        },
+        {
+          os: 'Windows',
+          os_version: '8',
+          browser: 'ie',
+          device: null,
+          browser_version: '10.0',
+          real_mobile: null
+        },
+        {
+          os: 'Windows',
+          os_version: '8.1',
+          browser: 'ie',
+          device: null,
+          browser_version: '11.0',
+          real_mobile: null
+        },
+        {
+          os: 'Windows',
+          os_version: '10',
+          browser: 'ie',
+          device: null,
+          browser_version: '11.0',
+          real_mobile: null
+        }
+      ];
+
+      expect(generatedCombo).to.deep.equal(expectedCombos);
+    });
+
+    it("should only take operating system where browser exists", function () {
+      var generatedCombo = bsCapabilities.create({
+        browser: "edge",
+        browser_version: ["latest"],
+        os: "Windows",
+        os_version: ["XP", "7", "8", "8.1", "10"]
+      });
+
+      var expectedCombos = [
+        {
+          os: 'Windows',
+          os_version: '10',
+          browser: 'edge',
+          device: null,
+          browser_version: 'insider preview',
+          real_mobile: null
+        }
+      ];
+
+      expect(generatedCombo).to.deep.equal(expectedCombos);
+    });
+  });
 });

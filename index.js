@@ -60,18 +60,33 @@ module.exports = function(username, key) {
         }
 
         browserMatches = _.flatten(_.map(rules, function (rule) {
-          if (rule.browser_version === 'current') {
+          if (_.includes(['previous', 'current', 'latest'], rule.browser_version)) {
             var current_rule = _.clone(rule);
             delete current_rule.browser_version;
-            // ignore any browser with a version that can't be determined to be a number
-            var candidates = _.filter(browserMatches, function(browser) {
-              return isFinite(browser['browser_version']);
+            var candidates = _.filter(browserMatches, current_rule);
+            candidates = _.sortBy(candidates, function (browser) {
+              var version = browser['browser_version'];
+              if (isFinite(version)) {
+                return parseFloat(version);
+              } else {
+                return Infinity;
+              }
             });
-            candidates = _.filter(candidates, current_rule);
-            var current = _.last(_.sortBy(candidates, function(browser) {
-              return parseFloat(browser['browser_version']);
-            }));
-            return current ? [current] : [];
+            if (rule.browser_version !== 'latest') {
+              candidates = _.filter(candidates, function(browser) {
+                return isFinite(browser['browser_version']);
+              });
+            }
+            var selected;
+            switch (rule.browser_version) {
+              case 'current':
+              case 'latest':
+                selected = _.nth(candidates, -1);
+                break;
+                case 'previous':
+                selected = _.nth(candidates, -2);
+            }
+            return selected ? [selected] : [];
           }
           return _.filter(browserMatches, rule);
         }));
