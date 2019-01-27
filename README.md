@@ -289,9 +289,9 @@ console.log(capabilities);
 // }]
 ```
 
-### Current version of a browser
+### Current/latest/previous version of a browser
 
-You can select the current version of a browser for an OS by passing in the string "current" as the browser version:
+You can select the current (exclude betas), latest (include betas) or previous version of a browser for an OS by passing in the string "current", "latest" or "previous" as the browser version:
 
 ```js
 var username = "<browserstack username>";
