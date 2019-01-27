@@ -1,19 +1,19 @@
-var _ = require("lodash");
-var parser = require("./lib/parse");
-var request = require("sync-request");
+var _ = require('lodash');
+var parser = require('./lib/parse');
+var request = require('sync-request');
 
 var browsers;
 
 function createRulesProduct(rules) {
   var filters = [rules];
 
-  _.each(rules, function(value, property) {
+  _.each(rules, function (value, property) {
     if (_.isArray(value)) {
       var newFilters = [];
 
       // create set of filters from possible values
-      _.each(value, function(type) {
-        _.each(filters, function(filter) {
+      _.each(value, function (type) {
+        _.each(filters, function (filter) {
           var updatedFilter = _.clone(filter);
           updatedFilter[property] = type;
           newFilters.push(updatedFilter);
@@ -27,13 +27,13 @@ function createRulesProduct(rules) {
   return filters;
 }
 
-function nestedExclude (browsers, rules) {
-  return _.reduce(rules, function(filteredBrowsers, rule) {
+function nestedExclude(browsers, rules) {
+  return _.reduce(rules, function (filteredBrowsers, rule) {
     return _.reject(filteredBrowsers, rule);
   }, browsers);
 }
 
-module.exports = function(username, key) {
+module.exports = function (username, key) {
   return {
     create: function (includes, excludes) {
 
@@ -73,18 +73,18 @@ module.exports = function(username, key) {
               }
             });
             if (rule.browser_version !== 'latest') {
-              candidates = _.filter(candidates, function(browser) {
+              candidates = _.filter(candidates, function (browser) {
                 return isFinite(browser['browser_version']);
               });
             }
             var selected;
             switch (rule.browser_version) {
-              case 'current':
-              case 'latest':
-                selected = _.nth(candidates, -1);
-                break;
-                case 'previous':
-                selected = _.nth(candidates, -2);
+            case 'current':
+            case 'latest':
+              selected = _.nth(candidates, -1);
+              break;
+            case 'previous':
+              selected = _.nth(candidates, -2);
             }
             return selected ? [selected] : [];
           }

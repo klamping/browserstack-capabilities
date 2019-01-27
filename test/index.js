@@ -1,12 +1,12 @@
-var expect = require("chai").expect;
-var bsCapabilities = require("../index.js")(process.env.BROWSERSTACK_USERNAME, process.env.BROWSERSTACK_KEY);
+var expect = require('chai').expect;
+var bsCapabilities = require('../index.js')(process.env.BROWSERSTACK_USERNAME, process.env.BROWSERSTACK_KEY);
 
-describe("combo generation", function() {
-  describe("simple combinations", function () {
-    it("should take an include", function () {
+describe('combo generation', function () {
+  describe('simple combinations', function () {
+    it('should take an include', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "ie",
-        browser_version: "10.0"
+        browser: 'ie',
+        browser_version: '10.0'
       });
 
       var expectedCombos = [{
@@ -28,13 +28,13 @@ describe("combo generation", function() {
       expect(generatedCombo).to.deep.equal(expectedCombos);
     });
 
-    it("should take an exclude", function () {
+    it('should take an exclude', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "ie",
-        os: "Windows",
-        os_version: "7"
+        browser: 'ie',
+        os: 'Windows',
+        os_version: '7'
       }, {
-        browser_version: "8.0"
+        browser_version: '8.0'
       });
 
       var expectedCombos = [{
@@ -63,13 +63,13 @@ describe("combo generation", function() {
       expect(generatedCombo).to.deep.equal(expectedCombos);
     });
 
-    it("should take an include and an exclude", function () {
+    it('should take an include and an exclude', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "ie",
-        browser_version: "10.0",
-        os: "Windows"
+        browser: 'ie',
+        browser_version: '10.0',
+        os: 'Windows'
       }, {
-        os_version: "7"
+        os_version: '7'
       });
 
       var expectedCombos = [{
@@ -85,18 +85,18 @@ describe("combo generation", function() {
     });
   });
 
-  describe("multiple includes and excludes", function() {
-    it("should take multiple includes", function () {
+  describe('multiple includes and excludes', function () {
+    it('should take multiple includes', function () {
       var generatedCombo = bsCapabilities.create([{
-        browser: "firefox",
-        browser_version: "42.0",
-        os: "Windows",
-        os_version: ["10", "8.1"]
-      },{
-        browser: "chrome",
-        browser_version: "46.0",
-        os: "Windows",
-        os_version: ["10", "8.1"]
+        browser: 'firefox',
+        browser_version: '42.0',
+        os: 'Windows',
+        os_version: ['10', '8.1']
+      }, {
+        browser: 'chrome',
+        browser_version: '46.0',
+        os: 'Windows',
+        os_version: ['10', '8.1']
       }]);
 
       var expectedCombos = [{
@@ -132,15 +132,15 @@ describe("combo generation", function() {
       expect(generatedCombo).to.deep.equal(expectedCombos);
     });
 
-    it("should take multiple excludes", function () {
+    it('should take multiple excludes', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "ie",
-        os: "Windows",
-        os_version: "7"
+        browser: 'ie',
+        os: 'Windows',
+        os_version: '7'
       }, [{
-        browser_version: "8.0"
+        browser_version: '8.0'
       }, {
-        browser_version: "9.0"
+        browser_version: '9.0'
       }]);
 
       var expectedCombos = [{
@@ -164,12 +164,12 @@ describe("combo generation", function() {
 
   });
 
-  describe("nested combinations", function () {
-    it("should take a nested include", function () {
+  describe('nested combinations', function () {
+    it('should take a nested include', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "ie",
-        browser_version: ["11.0", "10.0"],
-        os_version: ["10", "8.1", "7"]
+        browser: 'ie',
+        browser_version: ['11.0', '10.0'],
+        os_version: ['10', '8.1', '7']
       });
 
       var expectedCombos = [
@@ -209,14 +209,14 @@ describe("combo generation", function() {
       expect(generatedCombo).to.deep.equal(expectedCombos);
     });
 
-    it("should take a nested include and simple exclude", function () {
+    it('should take a nested include and simple exclude', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "ie",
-        browser_version: ["11.0", "10.0"],
-        os_version: ["10", "8.1", "7"]
+        browser: 'ie',
+        browser_version: ['11.0', '10.0'],
+        os_version: ['10', '8.1', '7']
       }, {
-        browser_version: "11.0",
-        os_version: "7"
+        browser_version: '11.0',
+        os_version: '7'
       });
 
       var expectedCombos = [
@@ -249,13 +249,13 @@ describe("combo generation", function() {
     });
 
 
-    it("should take a simple include and nested exclude", function () {
+    it('should take a simple include and nested exclude', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "firefox",
-        os: "Windows",
-        browser_version: "42.0"
+        browser: 'firefox',
+        os: 'Windows',
+        browser_version: '42.0'
       }, {
-        os_version: ["8", "XP"]
+        os_version: ['8', 'XP']
       });
 
       var expectedCombos = [
@@ -287,14 +287,14 @@ describe("combo generation", function() {
       expect(generatedCombo).to.deep.equal(expectedCombos);
     });
 
-    it("should take a nested include and nested exclude", function () {
+    it('should take a nested include and nested exclude', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "ie",
-        browser_version: ["11.0", "10.0"],
-        os_version: ["10", "8.1", "7"]
+        browser: 'ie',
+        browser_version: ['11.0', '10.0'],
+        os_version: ['10', '8.1', '7']
       }, {
-        browser_version: "11.0",
-        os_version: ["8.1", "7"]
+        browser_version: '11.0',
+        os_version: ['8.1', '7']
       });
 
       var expectedCombos = [
@@ -319,13 +319,13 @@ describe("combo generation", function() {
     });
   });
 
-  describe("current combinations", function () {
-    it("should take a current browser_version include", function () {
+  describe('current combinations', function () {
+    it('should take a current browser_version include', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "ie",
-        browser_version: ["current"],
-        os: "Windows",
-        os_version: ["XP", "7", "8", "8.1", "10"]
+        browser: 'ie',
+        browser_version: ['current'],
+        os: 'Windows',
+        os_version: ['XP', '7', '8', '8.1', '10']
       });
 
       var expectedCombos = [
@@ -374,12 +374,12 @@ describe("combo generation", function() {
       expect(generatedCombo).to.deep.equal(expectedCombos);
     });
 
-    it("should only take operating system where browser exists", function () {
+    it('should only take operating system where browser exists', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "edge",
-        browser_version: ["current"],
-        os: "Windows",
-        os_version: ["XP", "7", "8", "8.1", "10"]
+        browser: 'edge',
+        browser_version: ['current'],
+        os: 'Windows',
+        os_version: ['XP', '7', '8', '8.1', '10']
       });
 
       var expectedCombos = [
@@ -397,13 +397,13 @@ describe("combo generation", function() {
     });
   });
 
-  describe("previous combinations", function () {
-    it("should take a previous browser_version include", function () {
+  describe('previous combinations', function () {
+    it('should take a previous browser_version include', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "ie",
-        browser_version: ["previous"],
-        os: "Windows",
-        os_version: ["XP", "7"]
+        browser: 'ie',
+        browser_version: ['previous'],
+        os: 'Windows',
+        os_version: ['XP', '7']
       });
 
       var expectedCombos = [
@@ -428,12 +428,12 @@ describe("combo generation", function() {
       expect(generatedCombo).to.deep.equal(expectedCombos);
     });
 
-    it("should only take operating system where browser exists", function () {
+    it('should only take operating system where browser exists', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "edge",
-        browser_version: ["previous"],
-        os: "Windows",
-        os_version: ["XP", "7", "8", "8.1", "10"]
+        browser: 'edge',
+        browser_version: ['previous'],
+        os: 'Windows',
+        os_version: ['XP', '7', '8', '8.1', '10']
       });
 
       var expectedCombos = [
@@ -451,13 +451,13 @@ describe("combo generation", function() {
     });
   });
 
-  describe("latest combinations", function () {
-    it("should take a latest browser_version include", function () {
+  describe('latest combinations', function () {
+    it('should take a latest browser_version include', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "ie",
-        browser_version: ["latest"],
-        os: "Windows",
-        os_version: ["XP", "7", "8", "8.1", "10"]
+        browser: 'ie',
+        browser_version: ['latest'],
+        os: 'Windows',
+        os_version: ['XP', '7', '8', '8.1', '10']
       });
 
       var expectedCombos = [
@@ -506,12 +506,12 @@ describe("combo generation", function() {
       expect(generatedCombo).to.deep.equal(expectedCombos);
     });
 
-    it("should only take operating system where browser exists", function () {
+    it('should only take operating system where browser exists', function () {
       var generatedCombo = bsCapabilities.create({
-        browser: "edge",
-        browser_version: ["latest"],
-        os: "Windows",
-        os_version: ["XP", "7", "8", "8.1", "10"]
+        browser: 'edge',
+        browser_version: ['latest'],
+        os: 'Windows',
+        os_version: ['XP', '7', '8', '8.1', '10']
       });
 
       var expectedCombos = [
