@@ -339,3 +339,44 @@ console.log(capabilities);
 //   browser_version: '11.0'
 // }]
 ```
+
+### Defaults
+
+You can pass in additional defaults as the third parameter, and they will be applied to all results:
+
+```js
+var username = "<browserstack username>";
+var key = "<browserstack key>";
+var bsCapabilities = require("browserstack-capabilities")(username, key);
+
+var capabilities = bsCapabilities.create({
+  browser: 'ie',
+  browser_version: ['10.0', '11.0'],
+  os: 'Windows',
+  os_version: '7'
+}, 
+null,
+{
+  resolution: '1600x1200'
+});
+
+console.log(capabilities);
+// outputs:
+// [{
+//   device: null,
+//   os: 'Windows',
+//   browser: 'ie',
+//   os_version: '7',
+//   browser_version: '10.0',
+//   real_mobile: null,
+//   resolution: '1600x1200'
+// }, {
+//   device: null,
+//   os: 'Windows',
+//   browser: 'ie',
+//   os_version: '7',
+//   browser_version: '11.0',
+//   real_mobile: null,
+//   resolution: '1600x1200'
+// }]
+```

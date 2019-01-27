@@ -85,6 +85,41 @@ describe('combo generation', function () {
     });
   });
 
+  describe('defaults', function () {
+    it('should assign defaults to all matches', function () {
+      var generatedCombo = bsCapabilities.create({
+        browser: 'ie',
+        browser_version: ['10.0', '11.0'],
+        os: 'Windows',
+        os_version: '7'
+      }, 
+      null,
+      {
+        resolution: '1600x1200'
+      });
+
+      var expectedCombos = [{
+        device: null,
+        os: 'Windows',
+        browser: 'ie',
+        os_version: '7',
+        browser_version: '10.0',
+        real_mobile: null,
+        resolution: '1600x1200'
+      }, {
+        device: null,
+        os: 'Windows',
+        browser: 'ie',
+        os_version: '7',
+        browser_version: '11.0',
+        real_mobile: null,
+        resolution: '1600x1200'
+      }];
+
+      expect(generatedCombo).to.deep.equal(expectedCombos);
+    });
+  });
+
   describe('multiple includes and excludes', function () {
     it('should take multiple includes', function () {
       var generatedCombo = bsCapabilities.create([{

@@ -35,7 +35,7 @@ function nestedExclude(browsers, rules) {
 
 module.exports = function (username, key) {
   return {
-    create: function (includes, excludes) {
+    create: function (includes, excludes, defaults) {
 
       if (!browsers) {
         var auth = 'Basic ' + new Buffer(username + ':' + key).toString('base64');
@@ -100,6 +100,10 @@ module.exports = function (username, key) {
         }
         browserMatches = nestedExclude(browserMatches, rules);
       }
+
+      browserMatches = _.map(browserMatches, function (match) {
+        return _.assign(_.clone(match), defaults);
+      });
 
       return browserMatches;
     },
